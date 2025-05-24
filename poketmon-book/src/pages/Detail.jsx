@@ -34,7 +34,6 @@ border-radius: 10px;
 &:hover {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   }
-
 `
 
 const Detail = () => {
@@ -47,7 +46,7 @@ const Detail = () => {
       <PoketName>{pokemon.korean_name}</PoketName>
       <PoketType>타입: {pokemon.types.join(", ")}</PoketType>
       <Discrip>{pokemon.description}</Discrip>
-      <PreBtn onClick={() => navigate(-1)} color>뒤로 가기</PreBtn>
+      <PreBtn onClick={() => navigate(-1)}>뒤로 가기</PreBtn>
     </Container>
   );
 };

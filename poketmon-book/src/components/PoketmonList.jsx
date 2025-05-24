@@ -1,27 +1,30 @@
 import React from "react";
-import PoketmonCard from "./PoketmonCard";
 import styled from "styled-components";
+import PoketmonCard from "./PoketmonCard";
 
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  margin-left: 3.5rem;
   justify-content: start;
+  background-color: #e5e4e4;
+`; 
+const CardList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top:2rem;
+  gap:1rem;
+  margin-bottom: 2rem;
+  margin-left: 7rem;
 `;
 
-const PoketmonList = ({ poketmons = [], onAddPoketmon }) => {
+const PoketmonList = ({ poketmons = [] }) => {
   return (
     <Container>
+      <CardList>
       {poketmons.map((pokemon) => (
-        <PoketmonCard
-          key={pokemon.id}
-          pokemon={pokemon}
-          onClick={() => onAddPoketmon(pokemon)}
-        />
+        <PoketmonCard key={pokemon.id} pokemon={pokemon} />
       ))}
+      </CardList>
     </Container>
   );
 };
