@@ -40,22 +40,31 @@ const EmptyBox = styled.div`
 const Dashboard = () => {
   const { selected, handleRemove } = usePoketmonContext();
 
+  const cards = [];
+  for (let i = 0; i < 6; i++) {
+    if (selected[i]) {
+      cards.push(
+        <PoketmonCard
+          key={selected[i].id}
+          pokemon={selected[i]}
+          onClick={() => handleRemove(selected[i].id)}
+          buttonLabel="삭제"
+        />
+      );
+    } else {
+      cards.push(
+        <EmptyBox key={`empty-${i}`}>
+          포켓몬 선택
+        </EmptyBox>
+      );
+    }
+  }
+
   return (
     <Container>
       <Title>나만의 포켓몬</Title>
       <CardsWrapper>
-        {[...Array(6)].map((_, i) =>
-          selected[i] ? (
-            <PoketmonCard
-              key={selected[i].id}
-              pokemon={selected[i]}
-              onClick={() => handleRemove(selected[i].id)}
-              buttonLabel="삭제"
-            />
-          ) : (
-            <EmptyBox key={`empty-${i}`}>포켓몬 선택</EmptyBox>
-          )
-        )}
+        {cards}
       </CardsWrapper>
     </Container>
   );
