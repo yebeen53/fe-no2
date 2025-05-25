@@ -47,7 +47,7 @@ const Detail = () => {
       <PoketName>{pokemon.korean_name}</PoketName>
       <PoketType>타입: {pokemon.types.join(", ")}</PoketType>
       <Discrip>{pokemon.description}</Discrip>
-      <PreBtn onClick={() => navigate(-1)} color>뒤로 가기</PreBtn>
+      <PreBtn onClick={() => navigate(-1)} >뒤로 가기</PreBtn>
     </Container>
   );
 };
