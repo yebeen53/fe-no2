@@ -24,7 +24,7 @@ const CardsWrapper = styled.div`
 
 const EmptyBox = styled.div`
   width: 150px;
-  height: 150px; 
+  height: 150px;
   border: 2px dashed black;
   border-radius: 10px;
   background-color: white;
@@ -36,26 +36,29 @@ const EmptyBox = styled.div`
   font-size: 1rem;
 `;
 
-const Dashboard = ({ selected , onRemove }) => {
+const Dashboard = ({ selected, onRemove }) => {
+  const cards = [];
+  for (let i = 0; i < 6; i++) {
+    if (selected[i]) {
+      cards.push(
+        <PoketmonCard
+          key={selected[i].id}
+          pokemon={selected[i]}
+          onClick={() => onRemove(selected[i].id)}
+          buttonLabel="삭제"
+        />
+      );
+    } else {
+      cards.push(
+        <EmptyBox key={`empty-${i}`}>포켓몬 선택</EmptyBox>
+      );
+    }
+  }
+
   return (
     <Container>
       <Title>나만의 포켓몬</Title>
-      <CardsWrapper>
-        {[...Array(6)].map((_, i) => {
-          if (selected[i]) {
-            return (
-              <PoketmonCard
-                key={selected[i].id}
-                pokemon={selected[i]}
-                onClick={() => onRemove(selected[i].id)}
-                buttonLabel="삭제"
-              />
-            );
-          } else {
-            return <EmptyBox key={`empty-${i}`}>포켓몬 선택</EmptyBox>;
-          }
-        })}
-      </CardsWrapper>
+      <CardsWrapper>{cards}</CardsWrapper>
     </Container>
   );
 };
